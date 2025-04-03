@@ -1,0 +1,16 @@
+import java.util.ArrayList;
+
+public class SolveMaze {
+   public static ArrayList<int[]> solveMaze(String[][] maze) {
+      return null;
+   }
+
+   public static boolean findPath(String[][] maze, int row, int col, ArrayList<int[]> path, boolean[][] wasTouched) {
+      return false;
+   }
+
+   public static void printPath(ArrayList<int[]> path) {
+      System.out.print();
+   }
+
+}
