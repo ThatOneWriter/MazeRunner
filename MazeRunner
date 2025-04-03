@@ -10,8 +10,8 @@ public class MazeRunner {
         String[][] maze = getMaze(filename);
 
         if (maze != null) {
-            ArrayList<int[]> path = solveMaze(maze);
-            printPath(path);
+            ArrayList<int[]> path = SolveMaze.solveMaze(maze);
+            SolveMaze.printPath(path);
 
         }
 
