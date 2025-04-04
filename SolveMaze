@@ -1,16 +1,60 @@
 import java.util.ArrayList;
 
 public class SolveMaze {
+
    public static ArrayList<int[]> solveMaze(String[][] maze) {
-      return null;
+       int rows = maze.length;
+       int cols = maze[0].length;
+       ArrayList<int[]> path = new ArrayList<>();
+       boolean[][] visited = new boolean[rows][cols];
+
+       if (findPath(maze, 0, 0, path, visited)) {
+           return path;
+       } 
+       else {
+           return null;
+       }
    }
 
-   public static boolean findPath(String[][] maze, int row, int col, ArrayList<int[]> path, boolean[][] wasTouched) {
-      return false;
+
+   public static boolean findPath(String[][] maze, int row, int col, ArrayList<int[]> path, boolean[][] visited) {
+       int rows = maze.length;
+       int columns = maze[0].length;
+
+       if (row < 0 || row >= rows || col < 0 || col >= columns || visited[row][col]) {
+           return false;
+       }
+
+       path.add(new int[]{row, col});
+       visited[row][col] = true;
+
+       if (row == rows - 1 && col == columns - 1) {
+           return true;
+       }
+       if (findPath(maze, row + 1, col, path, visited) ||
+               findPath(maze, row, col + 1, path, visited) ||
+               findPath(maze, row - 1, col, path, visited) ||
+               findPath(maze, row, col - 1, path, visited)) {
+           return true;
+       }
+
+       path.remove(path.size() - 1); // note: this is to go backwords
+       return false;
    }
+
 
    public static void printPath(ArrayList<int[]> path) {
-      System.out.print();
-   }
+       if (path != null) {
 
+           System.out.println("Path:");
+
+           for (int[] point : path) {
+               System.out.print(("(" + point[0] + ", " + point[1] + ") ---> "));
+           }
+       }
+       else {
+           System.out.println("Invalid Maze. This is abysmal..");
+       }
+   }
 }
+
