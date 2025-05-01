@@ -1,3 +1,7 @@
+//WILL KEEP FIND LONGEST PATH UNTIL FURTHER NOTICE, REASON: In the test paths currently, the longest path tends to be the one that has another path connected to it.
+//Also currectly I need to connect the findStraight path (and change its misleading name) to the findLongestPaths code.
+
+
 import java.util.ArrayList;
 
 public class NewSolverWithoutRecursion {
