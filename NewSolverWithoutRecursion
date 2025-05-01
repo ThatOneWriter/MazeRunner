@@ -1,0 +1,41 @@
+import java.util.ArrayList;
+
+public class NewSolverWithoutRecursion {
+    private static ArrayList<int[]> path;
+
+    public static ArrayList<int[]> solveMaze(String[][] maze) {
+        return null;
+    }
+
+    public static boolean findStraightPath(String[][] maze, int row, int col) {
+        int rows = maze.length;
+        int columns = maze[0].length;
+
+        if (row < 0 || row >= rows || col < 0 || col >= columns) {
+            return false;
+        }
+
+        if (row == rows - 1 && col == columns - 1) {
+            return true;
+        }
+
+        path.add(new int[]{row, col});
+        return true;
+    }
+
+
+
+    public static void printPath(ArrayList<int[]> path) {
+        if (path != null) {
+            System.out.println("Path:");
+            for (int[] point : path) {
+                System.out.print(("(" + point[0] + ", " + point[1] + ") ---> "));
+            }
+
+
+        }
+        else {
+            System.out.println("Invalid Maze. This is abysmal..");
+        }
+    }
+}
