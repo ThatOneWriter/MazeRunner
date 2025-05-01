@@ -6,18 +6,20 @@ import java.util.Scanner;
 public class MazeRunner {
 
     public static void main(String[] args) {
-        String filename = "src/maze"; // the maze file name :D
+        String filename = "src/maze"; // Replace with your maze file name.
         String[][] maze = getMaze(filename);
 
         if (maze != null) {
-            ArrayList<int[]> path = SolveMaze.solveMaze(maze);
-            SolveMaze.printPath(path);
+            ArrayList<int[]> path = NewSolverWithoutRecursion.solveMaze(maze);
 
+
+            ArrayList<int[]> newPath = SolveMaze.solveMaze(maze);
+            SolveMaze.printPath(newPath);
         }
 
     }
 
-public static String[][] getMaze(String fileName) {
+    public static String[][] getMaze(String fileName) {
         File f = new File(fileName);
         Scanner s = null;
         try {
@@ -41,3 +43,6 @@ public static String[][] getMaze(String fileName) {
         }
         return maze;
     }
+
+
+}
