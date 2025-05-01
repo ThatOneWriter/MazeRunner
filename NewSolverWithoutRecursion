@@ -11,6 +11,7 @@ public class NewSolverWithoutRecursion {
         int rows = maze.length;
         int columns = maze[0].length;
 
+
         if (row < 0 || row >= rows || col < 0 || col >= columns) {
             return false;
         }
@@ -20,10 +21,58 @@ public class NewSolverWithoutRecursion {
         }
 
         path.add(new int[]{row, col});
+
         return true;
     }
 
+    public static int findLongestPathIfTwo(int firstPath, int secondPath) {
+        int longestPath = 0;
+        if (firstPath > secondPath) {
+            longestPath = firstPath;
+        }
 
+        if (firstPath < secondPath) {
+            longestPath = secondPath;
+        }
+
+        return longestPath;
+    }
+
+    public static int findLongestPathIfThree(int firstPath, int secondPath, int thirdPath) {
+        int longestPath = 0;
+        if (firstPath > secondPath && firstPath > thirdPath) {
+            longestPath = firstPath;
+        }
+
+        if (firstPath < secondPath && secondPath > thirdPath) {
+            longestPath = secondPath;
+        }
+
+        if (firstPath < thirdPath && thirdPath > secondPath) {
+            longestPath = thirdPath;
+        }
+        return longestPath;
+    }
+
+    public static int findLongestPathIfFour(int firstPath, int secondPath, int thirdPath, int fourthPath) {
+        int longestPath = 0;
+        if (firstPath > secondPath && firstPath > thirdPath && firstPath > fourthPath) {
+            longestPath = firstPath;
+        }
+
+        if (firstPath < secondPath && secondPath > thirdPath && secondPath > fourthPath) {
+            longestPath = secondPath;
+        }
+
+        if (firstPath < thirdPath && thirdPath > secondPath && thirdPath > fourthPath) {
+            longestPath = thirdPath;
+        }
+
+        if (firstPath < fourthPath && fourthPath > secondPath && fourthPath > thirdPath) {
+            longestPath = fourthPath;
+        }
+        return longestPath;
+    }
 
     public static void printPath(ArrayList<int[]> path) {
         if (path != null) {
