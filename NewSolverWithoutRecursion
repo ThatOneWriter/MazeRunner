@@ -1,81 +1,71 @@
-//WILL KEEP FIND LONGEST PATH UNTIL FURTHER NOTICE, REASON: In the test paths currently, the longest path tends to be the one that has another path connected to it.
-//Also currectly I need to connect the findStraight path (and change its misleading name) to the findLongestPaths code.
+//UPDATE: Removed the longest path stuff, realized that it could lead to future errors if tested with way larger code
 
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class NewSolverWithoutRecursion {
-    private static ArrayList<int[]> path;
+    private static int empty = 0;
+
 
     public static ArrayList<int[]> solveMaze(String[][] maze) {
-        return null;
+        ArrayList<int[]> path = new ArrayList<>();
+
+
+        if (findRightPath(maze, 0, 0, path)){
+            return path;
+        }
+        else {
+            return null;
+        }
     }
 
-    public static boolean findStraightPath(String[][] maze, int row, int col) {
+    public static boolean findRightPath(String[][] maze, int row, int col, ArrayList<int[]> path) {
         int rows = maze.length;
         int columns = maze[0].length;
+        int fakeCoord = 100000;
+        int[] f = new int[]{fakeCoord};
+
+        ArrayList<int[]> q = new ArrayList<>();
+        q.add(new int[]{fakeCoord, fakeCoord});
+        for (int[] point : q) {
+            System.out.print(("(" + point[0] + ", " + point[0] + ") ---> "));
+        }
 
 
         if (row < 0 || row >= rows || col < 0 || col >= columns) {
+
             return false;
+
         }
 
         if (row == rows - 1 && col == columns - 1) {
             return true;
         }
 
-        path.add(new int[]{row, col});
+        q.add(new int[]{fakeCoord, fakeCoord});
+        for (row = 0; row < rows; row++) {
+            for (col = 0; col < columns; col++) {
+
+
+                    empty = 1;
+
+
+                path.add(new int[]{row, col});
+                if (empty == 1) {
+
+                    path.set(0, f);
+                    empty = 0;
+
+                }
+
+            }
+        }
+        if (path.equals(q)) {
+            int i;
+        }
 
         return true;
-    }
-
-    public static int findLongestPathIfTwo(int firstPath, int secondPath) {
-        int longestPath = 0;
-        if (firstPath > secondPath) {
-            longestPath = firstPath;
-        }
-
-        if (firstPath < secondPath) {
-            longestPath = secondPath;
-        }
-
-        return longestPath;
-    }
-
-    public static int findLongestPathIfThree(int firstPath, int secondPath, int thirdPath) {
-        int longestPath = 0;
-        if (firstPath > secondPath && firstPath > thirdPath) {
-            longestPath = firstPath;
-        }
-
-        if (firstPath < secondPath && secondPath > thirdPath) {
-            longestPath = secondPath;
-        }
-
-        if (firstPath < thirdPath && thirdPath > secondPath) {
-            longestPath = thirdPath;
-        }
-        return longestPath;
-    }
-
-    public static int findLongestPathIfFour(int firstPath, int secondPath, int thirdPath, int fourthPath) {
-        int longestPath = 0;
-        if (firstPath > secondPath && firstPath > thirdPath && firstPath > fourthPath) {
-            longestPath = firstPath;
-        }
-
-        if (firstPath < secondPath && secondPath > thirdPath && secondPath > fourthPath) {
-            longestPath = secondPath;
-        }
-
-        if (firstPath < thirdPath && thirdPath > secondPath && thirdPath > fourthPath) {
-            longestPath = thirdPath;
-        }
-
-        if (firstPath < fourthPath && fourthPath > secondPath && fourthPath > thirdPath) {
-            longestPath = fourthPath;
-        }
-        return longestPath;
     }
 
     public static void printPath(ArrayList<int[]> path) {
@@ -91,4 +81,6 @@ public class NewSolverWithoutRecursion {
             System.out.println("Invalid Maze. This is abysmal..");
         }
     }
+
+
 }
